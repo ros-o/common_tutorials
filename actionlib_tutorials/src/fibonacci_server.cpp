@@ -16,7 +16,7 @@ protected:
 public:
 
   FibonacciAction(std::string name) :
-    as_(nh_, name, boost::bind(&FibonacciAction::executeCB, this, _1), false),
+    as_(nh_, name, [this](auto& goal){ return executeCB(goal); }, false),
     action_name_(name)
   {
     as_.start();

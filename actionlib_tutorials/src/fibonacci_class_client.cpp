@@ -22,7 +22,7 @@ public:
 
     // Need boost::bind to pass in the 'this' pointer
     ac.sendGoal(goal,
-                boost::bind(&MyNode::doneCb, this, _1, _2),
+                [this](auto& state, auto& result){ doneCb(state, result); },
                 Client::SimpleActiveCallback(),
                 Client::SimpleFeedbackCallback());
 
